@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cfcdae5nv8wf5"
+path="res://.godot/imported/white_shader.glsl-1637d0a8bfdc2763424eb4130b673055.res"
+
+[deps]
+
+source_file="res://assets/shaders/white_shader.glsl"
+dest_files=["res://.godot/imported/white_shader.glsl-1637d0a8bfdc2763424eb4130b673055.res"]
+
+[params]
+

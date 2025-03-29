@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://ukyd6u16ej5a"]
+
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="1_4kkau"]
+[ext_resource type="Script" uid="uid://g18qx22khrms" path="res://scripts/bomb.gd" id="1_vpdcx"]
+[ext_resource type="AudioStream" uid="uid://qctnhk45gs5q" path="res://assets/sounds/explode.ogg" id="2_j15uc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kkau"]
+atlas = ExtResource("1_4kkau")
+region = Rect2(224, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpdcx"]
+atlas = ExtResource("1_4kkau")
+region = Rect2(240, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j15uc"]
+atlas = ExtResource("1_4kkau")
+region = Rect2(256, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84slv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kkau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpdcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j15uc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxi8k"]
+radius = 7.0
+
+[sub_resource type="AudioStream" id="AudioStream_vpdcx"]
+
+[node name="Bomb" type="RigidBody2D"]
+collision_layer = 8
+gravity_scale = 0.0
+script = ExtResource("1_vpdcx")
+explosion_sound = ExtResource("2_j15uc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_84slv")
+autoplay = "default"
+frame = 2
+frame_progress = 0.486115
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nxi8k")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStream_vpdcx")
+bus = &"SFX"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://cnw687wxlkp53"]
+
+[ext_resource type="Script" uid="uid://brd11xtnb4pk1" path="res://scripts/item_definition.gd" id="1_gnrkd"]
+
+[resource]
+script = ExtResource("1_gnrkd")
+key = "death"
+display_name = "DEATH"
+weight = 20
+cost = 0
+duration = 0.0
+shop_item = false
+enabled = true
+value = 0
+scene_path = "res://scenes/items/death.tscn"

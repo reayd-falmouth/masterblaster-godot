@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://bght6pop1cedy"]
+
+[ext_resource type="Script" uid="uid://brd11xtnb4pk1" path="res://scripts/item_definition.gd" id="1_elqcs"]
+
+[resource]
+script = ExtResource("1_elqcs")
+key = "none"
+display_name = "NONE"
+weight = 50
+cost = 0
+duration = 0.0
+shop_item = false
+enabled = true
+value = 0
+scene_path = ""

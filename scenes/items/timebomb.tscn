@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bap4nmect2hti"]
+
+[ext_resource type="Script" uid="uid://d1cmgqf462sdh" path="res://scripts/item.gd" id="1_mwnqi"]
+[ext_resource type="Resource" uid="uid://vi2a4noayuyp" path="res://resources/items/timebomb.tres" id="2_mwnqi"]
+[ext_resource type="AudioStream" uid="uid://eup8q3na8jrx" path="res://assets/sounds/warp.ogg" id="3_nuq6j"]
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="4_pajlj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwnqi"]
+atlas = ExtResource("4_pajlj")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_524ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwnqi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54df"]
+size = Vector2(16, 16)
+
+[node name="TimeBomb" type="Area2D"]
+script = ExtResource("1_mwnqi")
+item_definition = ExtResource("2_mwnqi")
+pickup_sound = ExtResource("3_nuq6j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_524ir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54df")

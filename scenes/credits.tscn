@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://l0a6wqtinagh"]
+
+[ext_resource type="FontFile" uid="uid://djqu7nohdtxaw" path="res://assets/fonts/font.fnt" id="1_0bpdh"]
+[ext_resource type="Script" uid="uid://cpw5insrirk8a" path="res://scripts/credits.gd" id="1_2ckv8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
+font = ExtResource("1_0bpdh")
+font_color = Color(0, 0.2, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2ckv8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "MASTERBLASTER V1.0
+(C) 1994 BY ALPHA BROTHERS
+
+---THE ULTIMATE MULTIPLAYER GAME---
+
+THIS PROGRAM IS --FREEWARE--
+BUT IF YOU LIKE IT, PLEASE SEND SOME
+MONEY OR A CHEQUE TO THIS ADDRESS :
+
+ALEXANDER IVANOF
+AM DORFANGER 2
+58644 ISELERLOHN
+GERMANY
+
+FOR SOME INSTRUCTIONS OR E-MAIL INFO
+PLEASE READ THE DOCUMENTATIONFILE !
+
+GOT A GOOD IDEA FOR THE GAME ?
+HAVE YOU FOUND A BUG ???
+THEN PLEASE REPORT IT TO ME !
+
+THANK YOU !"
+label_settings = SubResource("LabelSettings_2ckv8")
+horizontal_alignment = 1
+vertical_alignment = 1

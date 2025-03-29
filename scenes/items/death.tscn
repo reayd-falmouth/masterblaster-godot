@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwlrowlyvxrax"]
+
+[ext_resource type="Script" uid="uid://d1cmgqf462sdh" path="res://scripts/item.gd" id="1_dqk4y"]
+[ext_resource type="Resource" uid="uid://cnw687wxlkp53" path="res://resources/items/death.tres" id="2_dqk4y"]
+[ext_resource type="AudioStream" uid="uid://c6st0r0uky2b4" path="res://assets/sounds/die.ogg" id="3_vihuc"]
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="4_rhiac"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqk4y"]
+atlas = ExtResource("4_rhiac")
+region = Rect2(112, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_524ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqk4y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54df"]
+size = Vector2(16, 16)
+
+[node name="Death" type="Area2D"]
+script = ExtResource("1_dqk4y")
+item_definition = ExtResource("2_dqk4y")
+pickup_sound = ExtResource("3_vihuc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_524ir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54df")

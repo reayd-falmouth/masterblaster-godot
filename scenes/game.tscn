@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://iwetrln5b0jd"]
+
+[ext_resource type="Script" uid="uid://ccjb2piakop47" path="res://scripts/game.gd" id="1_0tnpc"]
+[ext_resource type="Script" uid="uid://f8wtss8j038n" path="res://scripts/game_timer.gd" id="1_gee14"]
+[ext_resource type="PackedScene" uid="uid://7d6yhqljsgsh" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="AudioStream" uid="uid://dsxtlcyr7wary" path="res://assets/sounds/alarm.ogg" id="2_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://o46cxsgrh3fg" path="res://scenes/maps/normal_map.tscn" id="3_gee14"]
+[ext_resource type="Script" uid="uid://df4c2iir83x01" path="res://scripts/camera_2d.gd" id="3_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://bs70kr5on24t7" path="res://assets/sounds/music.ogg" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://cadh3emn4iyd0" path="res://scripts/background_music.gd" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://n6x4q6qfwxxr" path="res://scenes/spawn_points.gd" id="8_0tnpc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnu2h"]
+
+[node name="Game" type="Node2D"]
+material = SubResource("ShaderMaterial_lnu2h")
+script = ExtResource("1_0tnpc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_lbhrr")
+
+[node name="MapContainer" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="NormalMap" parent="MapContainer" instance=ExtResource("3_gee14")]
+
+[node name="GameTimer" type="Node" parent="." node_paths=PackedStringArray("alarm_player")]
+script = ExtResource("1_gee14")
+alarm_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameTimer"]
+stream = ExtResource("2_0tnpc")
+bus = &"Ambience"
+parameters/looping = true
+
+[node name="BackgroundMusic" type="Node" parent="." node_paths=PackedStringArray("music_player")]
+script = ExtResource("6_u5sy4")
+music_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BackgroundMusic"]
+stream = ExtResource("5_p57ef")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(-8, 8)
+script = ExtResource("8_0tnpc")
+player_scene = ExtResource("1_uwrxv")
+
+[node name="Players" type="Node" parent="SpawnPoints"]
+
+[node name="SpawnTopLeft" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-120, -88)
+
+[node name="SpawnTopRight" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(136, -88)
+
+[node name="SpawnBottomLeft" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-119, 103)
+
+[node name="SpawnBottomRight" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(137, 103)
+
+[node name="SpawnCenter" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(9, 8)

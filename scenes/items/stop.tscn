@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://crah2r7usc62j"]
+
+[ext_resource type="Script" uid="uid://d1cmgqf462sdh" path="res://scripts/item.gd" id="1_83s1r"]
+[ext_resource type="Resource" uid="uid://ki4vkjpctldr" path="res://resources/items/stop.tres" id="2_ai1f7"]
+[ext_resource type="AudioStream" uid="uid://eup8q3na8jrx" path="res://assets/sounds/warp.ogg" id="3_yi8pg"]
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="4_2cmw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swr67"]
+atlas = ExtResource("4_2cmw0")
+region = Rect2(160, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_524ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swr67")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54df"]
+size = Vector2(16, 16)
+
+[node name="Stop" type="Area2D"]
+script = ExtResource("1_83s1r")
+item_definition = ExtResource("2_ai1f7")
+pickup_sound = ExtResource("3_yi8pg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_524ir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54df")

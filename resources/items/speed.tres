@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://djnq0s7lp5wiy"]
+
+[ext_resource type="Script" uid="uid://brd11xtnb4pk1" path="res://scripts/item_definition.gd" id="1_mdloo"]
+
+[resource]
+script = ExtResource("1_mdloo")
+key = "speed"
+display_name = "SPEED"
+weight = 20
+cost = 4
+duration = 0.0
+shop_item = true
+enabled = true
+value = 10
+scene_path = "res://scenes/items/speed.tscn"

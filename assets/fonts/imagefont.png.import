@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://ctu4dnggxlu64"
+path="res://.godot/imported/imagefont.png-590323e695e4ddbfc85afb64d95737f7.image"
+
+[deps]
+
+source_file="res://assets/fonts/imagefont.png"
+dest_files=["res://.godot/imported/imagefont.png-590323e695e4ddbfc85afb64d95737f7.image"]
+
+[params]
+

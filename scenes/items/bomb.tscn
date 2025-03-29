@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0dit343velmg"]
+
+[ext_resource type="Script" uid="uid://d1cmgqf462sdh" path="res://scripts/item.gd" id="1_cqajv"]
+[ext_resource type="Resource" uid="uid://hesrsy5c76ia" path="res://resources/items/bomb.tres" id="2_lrrpb"]
+[ext_resource type="AudioStream" uid="uid://clfsrtnt1t3yo" path="res://assets/sounds/bingo22.ogg" id="3_lrrpb"]
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="4_6d5bx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdsfx"]
+atlas = ExtResource("4_6d5bx")
+region = Rect2(304, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_524ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdsfx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54df"]
+size = Vector2(16, 16)
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_cqajv")
+item_definition = ExtResource("2_lrrpb")
+pickup_sound = ExtResource("3_lrrpb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_524ir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54df")

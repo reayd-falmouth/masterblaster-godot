@@ -1,0 +1,168 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3i78q0n5b8ey"]
+
+[ext_resource type="Script" uid="uid://persbkadr4ri" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://f6em6ogpjgbh" path="res://assets/screenshots/screenshot_menu.png" id="2_con2f"]
+[ext_resource type="LabelSettings" uid="uid://bsbc3huf2wi66" path="res://resources/labels/primary.tres" id="2_vjb58"]
+[ext_resource type="LabelSettings" uid="uid://bnw88fmtnq43v" path="res://resources/labels/secondary.tres" id="3_con2f"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_vjb58")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_con2f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -143.0
+offset_right = 49.0
+offset_bottom = -112.0
+text = "MAIN MENU
+---------"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+offset_left = -189.0
+offset_top = -77.0
+offset_right = 71.0
+offset_bottom = -41.0
+theme_override_constants/separation = 17
+
+[node name="WinsNeededItem" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="PointerLabel" type="Label" parent="MenuContainer/WinsNeededItem"]
+layout_mode = 2
+text = ">"
+label_settings = ExtResource("3_con2f")
+vertical_alignment = 1
+
+[node name="OptionLabel" type="Label" parent="MenuContainer/WinsNeededItem"]
+layout_mode = 2
+text = "WINS NEEDED  :"
+label_settings = ExtResource("2_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/WinsNeededItem"]
+layout_mode = 2
+theme_override_constants/margin_left = -15
+
+[node name="ValueLabel" type="Label" parent="MenuContainer/WinsNeededItem/MarginContainer"]
+layout_mode = 2
+text = "3"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayersItem" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="PointerLabel" type="Label" parent="MenuContainer/PlayersItem"]
+layout_mode = 2
+text = ">"
+label_settings = ExtResource("3_con2f")
+vertical_alignment = 1
+
+[node name="OptionLabel" type="Label" parent="MenuContainer/PlayersItem"]
+layout_mode = 2
+text = "PLAYERS      :"
+label_settings = ExtResource("2_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/PlayersItem"]
+layout_mode = 2
+theme_override_constants/margin_left = -15
+
+[node name="ValueLabel" type="Label" parent="MenuContainer/PlayersItem/MarginContainer"]
+layout_mode = 2
+text = "2"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shop" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="PointerLabel" type="Label" parent="MenuContainer/Shop"]
+layout_mode = 2
+text = ">"
+label_settings = ExtResource("3_con2f")
+vertical_alignment = 1
+
+[node name="OptionLabel" type="Label" parent="MenuContainer/Shop"]
+layout_mode = 2
+text = "SHOP         :"
+label_settings = ExtResource("2_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/Shop"]
+layout_mode = 2
+theme_override_constants/margin_left = -15
+
+[node name="ValueLabel" type="Label" parent="MenuContainer/Shop/MarginContainer"]
+layout_mode = 2
+text = "ON"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shrinking" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="PointerLabel" type="Label" parent="MenuContainer/Shrinking"]
+layout_mode = 2
+text = ">"
+label_settings = ExtResource("3_con2f")
+vertical_alignment = 1
+
+[node name="OptionLabel" type="Label" parent="MenuContainer/Shrinking"]
+layout_mode = 2
+text = "SHRINKING    :"
+label_settings = ExtResource("2_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/Shrinking"]
+layout_mode = 2
+theme_override_constants/margin_left = -15
+
+[node name="ValueLabel" type="Label" parent="MenuContainer/Shrinking/MarginContainer"]
+layout_mode = 2
+text = "ON"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FastShrinking" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="PointerLabel" type="Label" parent="MenuContainer/FastShrinking"]
+layout_mode = 2
+text = ">"
+label_settings = ExtResource("3_con2f")
+vertical_alignment = 1
+
+[node name="OptionLabel" type="Label" parent="MenuContainer/FastShrinking"]
+layout_mode = 2
+text = "FASTIGNITION :"
+label_settings = ExtResource("2_vjb58")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/FastShrinking"]
+layout_mode = 2
+theme_override_constants/margin_left = -15
+
+[node name="ValueLabel" type="Label" parent="MenuContainer/FastShrinking/MarginContainer"]
+layout_mode = 2
+text = "ON"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3i78q0n5b8ey"]
+
+[ext_resource type="Script" uid="uid://persbkadr4ri" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://f6em6ogpjgbh" path="res://assets/screenshots/screenshot_menu.png" id="2_con2f"]
+[ext_resource type="LabelSettings" uid="uid://bsbc3huf2wi66" path="res://resources/labels/primary.tres" id="2_vjb58"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_vjb58")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_con2f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -143.0
+offset_right = 49.0
+offset_bottom = -112.0
+text = "MAIN MENU
+---------"
+label_settings = ExtResource("2_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -95.0
+offset_top = -145.0
+offset_right = -95.0
+offset_bottom = -109.0
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_left = -95.0
+offset_top = -145.0
+offset_right = 70.0
+offset_bottom = -109.0

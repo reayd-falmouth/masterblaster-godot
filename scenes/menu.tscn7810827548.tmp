@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3i78q0n5b8ey"]
+
+[ext_resource type="Script" uid="uid://persbkadr4ri" path="res://scenes/menu.gd" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://djqu7nohdtxaw" path="res://assets/fonts/font.fnt" id="1_yqeox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font = ExtResource("1_yqeox")
+font_color = Color(0, 0.2, 1, 1)
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_vjb58")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name=">" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 17.0
+offset_top = 68.0
+offset_right = 310.0
+offset_bottom = 244.0
+
+[node name="WinsNeeded" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "WINS NEEDED : 3"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="Players" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PLAYERS     : 1"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="Shop" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SHOP        : ON"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="Shrinking" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SHRINKING   : ON"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="FastIgnition" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "FASTIGNITION: ON"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="StartMoney" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "STARTMONEY  : ON"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="NormalLevel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "NORMALLEVEL : ON"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="Gambling" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAMBLING    : ON"
+label_settings = SubResource("LabelSettings_vjb58")

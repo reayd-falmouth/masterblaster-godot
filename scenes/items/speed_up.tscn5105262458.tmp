@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cchx5ukf71kbg"]
+
+[ext_resource type="Script" uid="uid://cbcxxs53kyq47" path="res://scripts/items/speed_up.gd" id="1_487ib"]
+[ext_resource type="Texture2D" uid="uid://cxj887yueiji2" path="res://assets/sprites/objects.png" id="2_5irmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxmfq"]
+atlas = ExtResource("2_5irmr")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_524ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxmfq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54df"]
+size = Vector2(16, 16)
+
+[node name="SpeedUp" type="Area2D"]
+script = ExtResource("1_487ib")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_524ir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54df")

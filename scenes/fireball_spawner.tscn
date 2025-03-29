@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jy15x2mli5ba"]
+
+[ext_resource type="Script" uid="uid://bfgs5c4qtoj6y" path="res://scripts/fireball_spawner.gd" id="1_q1783"]
+
+[node name="FireballSpawner" type="Node2D"]
+script = ExtResource("1_q1783")

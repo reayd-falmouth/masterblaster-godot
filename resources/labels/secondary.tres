@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://bnw88fmtnq43v"]
+
+[ext_resource type="FontFile" uid="uid://djqu7nohdtxaw" path="res://assets/fonts/font.fnt" id="1_k0n4n"]
+
+[sub_resource type="GDScript" id="GDScript_dsc0a"]
+
+[resource]
+font = ExtResource("1_k0n4n")
+font_size = 18
+font_color = Color(0.333, 0, 0.733, 1)
+script = SubResource("GDScript_dsc0a")
