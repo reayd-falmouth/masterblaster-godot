@@ -4,33 +4,36 @@ class_name Player
 
 @export var player_number: int = 1
 @export var speed: int = 40
-@export var power: int = 3
+@export var power: int = 3 
 @export var bombs: int = 1
 @export var money: int = 0
 @export var timebomb: bool = false
-@export var death_sound: AudioStream
-
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var bomb_placement_system: BombPlacementSystem = $BombPlacementSystem
 
 var last_direction: String = "down"
 var is_dead: bool = false
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var bomb_placement_system: BombPlacementSystem = $BombPlacementSystem
+
+@export var death_sound: AudioStream  # Assign your death sound in the editor
+
+
 func _ready():
 	add_to_group("player")
+	# Connect the animation_finished signal to the callback.
 	sprite.connect("animation_finished", Callable(self, "_on_animatedSprite_animation_finished"))
-	update_animation(false)  # Initialize idle animation
 
 func _on_animatedSprite_animation_finished():
-	if sprite.animation == "death_%d" % player_number:
-		queue_free()
+	# Once the death animation is finished, remove the node.
+	queue_free()
 
 func _physics_process(_delta):
+	# If the player is dead, stop processing input and animation.
 	if is_dead:
 		return
 
-	var velocity = Vector2.ZERO
-	var moved = false
+	velocity = Vector2.ZERO
+	var moved := false
 
 	if Input.is_action_pressed("right"):
 		velocity.x += 1
@@ -51,43 +54,44 @@ func _physics_process(_delta):
 		moved = true
 	elif Input.is_action_just_pressed("drop_bomb"):
 		bomb_placement_system.place_bomb(timebomb)
-
+	
+	# NEW: When the player releases the drop_bomb key and if timebomb is active,
+	# trigger all remote bombs.
 	if timebomb and Input.is_action_just_released("drop_bomb"):
 		bomb_placement_system.trigger_all_timebombs()
-
-	self.velocity = velocity.normalized() * speed
+		
+	velocity = velocity.normalized() * speed
 	move_and_slide()
-
 	update_animation(moved)
 
 func update_animation(moving: bool):
-	var animation_name = ""
-	if is_dead:
-		animation_name = "death_%d" % player_number
+	if moving:
+		sprite.play("move_%s_%d" % [last_direction, player_number])
 	else:
-		if moving:
-			animation_name = "move_%s_%d" % [last_direction, player_number]
-		else:
-			animation_name = "idle_%s_%d" % [last_direction, player_number]
-
-	if sprite.animation != animation_name:
-		sprite.play(animation_name)
+		sprite.play("idle_%s_%d" % [last_direction, player_number])
 
 func die():
+	# Prevent duplicate execution.
 	if is_dead:
 		return
 	is_dead = true
 
+	# Play the death sound if available.
 	if death_sound:
 		var sound_player = AudioStreamPlayer2D.new()
 		sound_player.stream = death_sound
 		add_child(sound_player)
 		sound_player.play()
 
-	update_animation(false) # Will trigger death animation
+	# Play the death animation (ensure it's named "death" in your AnimatedSprite2D).
+	sprite.play("death_%d" % player_number)
 
 func stop(duration: float) -> void:
-	var original_speed = speed
-	speed = 0
+	var original_speed = speed  # Save the current speed.
+	speed = 0                   # Stop the player by setting speed to 0.
+	# Wait for the duration of the stop.
 	await get_tree().create_timer(duration).timeout
+	
+	# Restore the original speed after the timer expires.
 	speed = original_speed
+	
