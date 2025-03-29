@@ -91,8 +91,17 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_accept"):
 		# "Enter" or "Space" pressed on the current item
 		# Could do something else, like open a sub-menu, confirm, etc.
+		_create_player_stats()
 		_go_to_next_scene()
 		
+func _create_player_stats():
+	# Reset existing stats.
+	PlayerStats.reset()
+	# Loop through your GameSettings.players array.
+	# For example, if GameSettings.players contains player identifiers:
+	for p in GameSettings.players:
+		PlayerStats.add_player(p)
+
 func _go_to_next_scene():
 	# Change the scene to your next screen. Update the path accordingly.
 	get_tree().change_scene_to_file("res://scenes/countdown.tscn")

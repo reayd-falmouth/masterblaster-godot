@@ -29,18 +29,40 @@ func _ready():
 	place_brickwalls(empty_layer, player_zones_layer, wall_layer)
 
 func _process(delta: float) -> void:
-	var players = get_tree().get_nodes_in_group("Players")
+	var players = get_tree().get_nodes_in_group("Players")  # Ensure your group name matches exactly ('player' lowercase)
 	var alive_count = 0
 	for player in players:
 		if not player.is_dead:
 			alive_count += 1
+	
 	if alive_count <= 1:
+		set_process(false)  # Stop further checks to avoid repeat calls
 		game_over()
 
 func game_over():
-	print("Game Over! Not enough players remain.")
-	set_process(false)
-	# TODO: Add scene transition or end game logic
+	print("🎯 Game over! Too few players left to continue.")
+	await get_tree().create_timer(3).timeout
+	
+	# Gather all players that are not dead (i.e., still alive)
+	var alive_players = []
+	for player in get_tree().get_nodes_in_group("Players"):
+		if not player.is_dead:
+			alive_players.append(player)
+	
+	# Update the player stats for each alive player
+	# (Assumes each player has a 'player_index' property corresponding to their index in PlayerStats.players_data)
+	for player in alive_players:
+		PlayerStats.add_win(player.player_index)
+	
+	# Check if any player's wins have reached the threshold for game over.
+	for player_stat in PlayerStats.players_data:
+		if player_stat["wins"] >= GameSettings.wins_needed:
+			get_tree().change_scene_to_file("res://scenes/overs.tscn")  # Update path as needed
+			return
+	
+	# If no player has reached the win threshold, go to the standings scene.
+	get_tree().change_scene_to_file("res://scenes/standings.tscn")  # Update path as needed
+
 
 func place_brickwalls(empty_layer: TileMapLayer, player_zones_layer: TileMapLayer, wall_layer: TileMapLayer):
 	print("🚧 Starting brickwall placement...")

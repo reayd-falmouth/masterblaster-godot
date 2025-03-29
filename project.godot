@@ -20,6 +20,7 @@ config/icon="uid://bebsf4gtqfica"
 GameSettings="*res://scripts/game_settings.gd"
 ItemDatabase="*res://scripts/item_database.gd"
 Globals="*res://scripts/globals.gd"
+PlayerStats="*res://scripts/player_stats.gd"
 
 [display]
 
