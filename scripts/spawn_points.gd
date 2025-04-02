@@ -1,10 +1,11 @@
-extends Node
+extends Node2D
 
 @export var player_scene: PackedScene  # Reference the Player scene from the editor
 
 var spawn_positions = {}
 
 func _ready():
+	# Store the global positions from your spawn marker nodes.
 	spawn_positions = {
 		"top_left": $SpawnTopLeft.global_position,
 		"top_right": $SpawnTopRight.global_position,
@@ -12,8 +13,8 @@ func _ready():
 		"bottom_right": $SpawnBottomRight.global_position,
 		"center": $SpawnCenter.global_position,
 	}
-
-	spawn_players(GameSettings.players)  # Replace '4' with actual player count dynamically
+	
+	spawn_players(GameSettings.players)  # Dynamically pass player count
 
 func spawn_players(player_count):
 	var positions = []
@@ -27,9 +28,16 @@ func spawn_players(player_count):
 		5:
 			positions = ["top_left", "top_right", "bottom_left", "bottom_right", "center"]
 
+	# Loop over each player to spawn
 	for i in range(player_count):
 		var player_instance = player_scene.instantiate()
-		player_instance.global_position = spawn_positions[positions[i]]
-		player_instance.player_number = i + 1  # Assigning a unique ID for each player
-		#player_instance.set_character_sprite("player_red") # Customize per your logic
+		# Convert the stored global spawn position into the local coordinate space
+		# of the $Players container.
+		var spawn_global = spawn_positions[positions[i]]
+		var spawn_local = $Players.to_local(spawn_global)
+		player_instance.position = spawn_local
+		# If the players appear too small, adjust their scale here:
+		# For example, if you have a global scaling factor (say, computed in your UI scaling code):
+		# player_instance.scale = your_scale_factor * player_instance.scale
+		player_instance.player_number = i + 1  # Unique player ID
 		$Players.add_child(player_instance)

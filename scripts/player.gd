@@ -28,12 +28,11 @@ func _on_animatedSprite_animation_finished():
 	queue_free()
 
 func _physics_process(_delta):
-	# If the player is dead, stop processing input and animation.
 	if is_dead:
 		return
 
 	velocity = Vector2.ZERO
-	var moved := false
+	var moved = false
 
 	if Input.is_action_pressed("right"):
 		velocity.x += 1
@@ -54,13 +53,23 @@ func _physics_process(_delta):
 		moved = true
 	elif Input.is_action_just_pressed("drop_bomb"):
 		bomb_placement_system.place_bomb(timebomb)
-	
-	# NEW: When the player releases the drop_bomb key and if timebomb is active,
-	# trigger all remote bombs.
+
 	if timebomb and Input.is_action_just_released("drop_bomb"):
 		bomb_placement_system.trigger_all_timebombs()
-		
-	velocity = velocity.normalized() * speed
+
+	velocity = velocity.normalized()
+
+	# Get the parent's scale factor.
+	# This assumes the parent is a CanvasItem (e.g. Node2D or Control) that handles global scaling.
+	var parent_scale = 1.0
+	if get_parent() and get_parent() is CanvasItem:
+		parent_scale = get_parent().scale.x  # assume uniform scaling
+
+	# Adjust the speed so that the effective global movement is what you expect.
+	# If parent_scale < 1, dividing by it increases the local speed.
+	var effective_speed = speed / Globals.global_scale_factor
+	velocity *= effective_speed
+
 	move_and_slide()
 	update_animation(moved)
 

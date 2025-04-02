@@ -24,9 +24,7 @@ PlayerStats="*res://scripts/player_stats.gd"
 
 [display]
 
-window/size/viewport_width=692
-window/size/viewport_height=540
-window/stretch/mode="canvas_items"
+window/size/mode=3
 window/stretch/scale_mode="integer"
 
 [input]

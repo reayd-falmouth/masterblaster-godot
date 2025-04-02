@@ -5,6 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
 font = ExtResource("1_0bpdh")
+font_size = 26
 font_color = Color(0, 0.2, 1, 1)
 
 [node name="Control" type="Control"]
@@ -25,7 +26,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2

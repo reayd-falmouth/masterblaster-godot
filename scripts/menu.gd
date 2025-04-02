@@ -5,6 +5,7 @@ extends Control
 
 var menu_items = []
 var current_index = 0
+var scene: String = "res://scenes/countdown.tscn"
 
 func _ready():
 	# Build a list describing each menu row
@@ -62,6 +63,7 @@ func _ready():
 	# Highlight the first item and refresh all display labels
 	highlight_item(current_index)
 	update_all_labels()
+	update_all_menu_fonts()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_up"):
@@ -92,7 +94,7 @@ func _unhandled_input(event):
 		# "Enter" or "Space" pressed on the current item
 		# Could do something else, like open a sub-menu, confirm, etc.
 		_create_player_stats()
-		_go_to_next_scene()
+		Globals.go_to_next_scene(scene)
 		
 func _create_player_stats():
 	# Reset existing stats.
@@ -101,10 +103,6 @@ func _create_player_stats():
 	# For example, if GameSettings.players contains player identifiers:
 	for p in GameSettings.players:
 		PlayerStats.add_player(p)
-
-func _go_to_next_scene():
-	# Change the scene to your next screen. Update the path accordingly.
-	get_tree().change_scene_to_file("res://scenes/countdown.tscn")
 	
 func highlight_item(index):
 	# Clear pointer ">" from all items first
@@ -118,7 +116,10 @@ func update_all_labels():
 	# Loop through each item, read from GameSettings, and set label text
 	for item in menu_items:
 		var setting_value = GameSettings[item.setting_name]
-		item.value_label.text = get_display_value(setting_value, item.display_type)
+		var display_value = get_display_value(setting_value, item.display_type)
+		# Pad the display value to at least 3 characters.
+		display_value = pad_text(display_value, 3)
+		item.value_label.text = display_value
 
 func get_display_value(value, display_type: String) -> String:
 	match display_type:
@@ -158,3 +159,20 @@ func change_setting(direction: int):
 
 	# If you have a special case for start_money_amount, 
 	# you could handle it here or create a separate menu item for it.
+
+func _notification(what):
+	if what == NOTIFICATION_RESIZED:
+		update_all_menu_fonts()
+
+func update_all_menu_fonts():
+	# Update the font size for each pointer and value label.
+	for item in menu_items:
+		Globals.scale_bitmap_label_font(item.pointer_label)
+		Globals.scale_bitmap_label_font(item.value_label)
+
+func pad_text(text: String, target_length: int) -> String:
+	var padded_text = text
+	# Append spaces until the text reaches the desired length.
+	while padded_text.length() < target_length:
+		padded_text += " "
+	return padded_text

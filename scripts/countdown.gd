@@ -1,9 +1,11 @@
 extends Control
 
 @onready var countdown_label = $CenterContainer/Label
-var count = 3
-
+var count: int = 3
+var scene: String = "res://scenes/game.tscn"
+	
 func _ready():
+	Globals.scale_bitmap_label_font(countdown_label)
 	countdown_label.text = str(count)
 	start_countdown()
 
@@ -17,4 +19,9 @@ func start_countdown() -> void:
 		start_countdown()
 	else:
 		# When count reaches 0, change to the game scene.
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
+		Globals.go_to_next_scene(scene)
+
+func _notification(what):
+	if what == NOTIFICATION_RESIZED:
+		Globals.scale_bitmap_label_font(countdown_label)
+		
