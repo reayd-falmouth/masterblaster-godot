@@ -37,6 +37,7 @@ animations = [{
 radius = 7.0
 
 [node name="Bomb" type="RigidBody2D"]
+z_index = 1
 collision_layer = 8
 collision_mask = 31
 gravity_scale = 0.0

@@ -24,6 +24,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Speed" type="Area2D"]
+z_index = 1
 script = ExtResource("1_jxmfq")
 item_definition = ExtResource("2_2po31")
 pickup_sound = ExtResource("3_qippm")

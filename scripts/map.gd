@@ -19,7 +19,8 @@ func _ready():
 	var empty_layer: TileMapLayer = layers.get_node("Empty")
 	var player_zones_layer: TileMapLayer = layers.get_node("PlayerZones")
 	var wall_layer: TileMapLayer = layers.get_node("Wall")
-
+	wall_layer.add_to_group("indestructible")
+	
 	if empty_layer == null or player_zones_layer == null or wall_layer == null:
 		push_error("❌ One or more required TileMap layers are missing!")
 		return

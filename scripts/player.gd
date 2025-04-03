@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var player_number: int = 1
-@export var speed: int = 40
+@export var speed: int = 50
 @export var power: int = 3 
 @export var bombs: int = 1
 @export var money: int = 0
@@ -58,17 +58,8 @@ func _physics_process(_delta):
 		bomb_placement_system.trigger_all_timebombs()
 
 	velocity = velocity.normalized()
-
-	# Get the parent's scale factor.
-	# This assumes the parent is a CanvasItem (e.g. Node2D or Control) that handles global scaling.
-	var parent_scale = 1.0
-	if get_parent() and get_parent() is CanvasItem:
-		parent_scale = get_parent().scale.x  # assume uniform scaling
-
 	# Adjust the speed so that the effective global movement is what you expect.
-	# If parent_scale < 1, dividing by it increases the local speed.
-	var effective_speed = speed / Globals.global_scale_factor
-	velocity *= effective_speed
+	velocity *= speed * Globals.global_scale_factor
 
 	move_and_slide()
 	update_animation(moved)

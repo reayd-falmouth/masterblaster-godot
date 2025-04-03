@@ -24,6 +24,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Bomb" type="Area2D"]
+z_index = 1
 script = ExtResource("1_cqajv")
 item_definition = ExtResource("2_lrrpb")
 pickup_sound = ExtResource("3_lrrpb")

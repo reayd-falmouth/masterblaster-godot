@@ -63,3 +63,4 @@ func _resize_canvas():
 	# Scale the entire CanvasLayer
 	self.scale = Vector2(scale_factor, scale_factor)
 	
+	Globals.global_scale_factor = scale_factor

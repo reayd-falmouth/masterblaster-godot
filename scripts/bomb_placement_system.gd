@@ -2,8 +2,7 @@ extends Node
 
 class_name BombPlacementSystem 
 
-const BOMB_SCENE = preload("res://Scenes/bomb.tscn")
-const TILE_SIZE = 16
+const BOMB_SCENE = preload("res://scenes/bomb.tscn")
 
 var player: Player = null
 var bombs_placed = 0
@@ -15,22 +14,32 @@ func _ready() -> void:
 func place_bomb(timebomb: bool):
 	if bombs_placed == player.bombs:
 		return
-	
+
 	var bomb = BOMB_SCENE.instantiate()
-	bomb.is_timebomb = timebomb           # Pass the timebomb flag to the bomb.
+	bomb.is_timebomb = timebomb
 	bomb.explosion_size = player.power
-	var player_position = player.position
-	var bomb_position = Vector2(round(player_position.x / TILE_SIZE) * TILE_SIZE, 
-								round(player_position.y / TILE_SIZE) * TILE_SIZE)
-	bomb.position = bomb_position
-	get_tree().root.add_child(bomb)
+
+	var parent = player.get_parent()
+	var local_pos = parent.to_local(player.global_position)
+
+	# Use the parent's actual scale if needed.
+	var effective_scale = parent.scale.x  # Assuming uniform scaling.
+	var tile_size = Globals.TILE_SIZE * effective_scale
+
+	# Use floor() to snap to the correct tile and then offset by half a tile to center.
+	var snapped_pos = Vector2(
+		floor(local_pos.x / tile_size) * tile_size,
+		floor(local_pos.y / tile_size) * tile_size
+	)
+	bomb.position = snapped_pos + Vector2(tile_size * 0.5, tile_size * 0.5)
+	parent.add_child(bomb)
+
 	bombs_placed += 1 
-	# Connect the bomb’s tree_exiting signal and pass the bomb reference.
 	bomb.tree_exiting.connect(Callable(self, "on_bomb_exploded").bind(bomb))
-	
-	# If this bomb is a timebomb, add it to the tracking list.
+
 	if timebomb:
 		timebomb_bombs.append(bomb)
+
 
 # Called when a bomb leaves the scene.
 func on_bomb_exploded(bomb):

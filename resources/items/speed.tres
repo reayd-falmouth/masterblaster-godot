@@ -11,5 +11,5 @@ cost = 4
 duration = 0.0
 shop_item = true
 enabled = true
-value = 10
+value = 20
 scene_path = "res://scenes/items/speed.tscn"

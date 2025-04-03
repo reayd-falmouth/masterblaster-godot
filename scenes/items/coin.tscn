@@ -24,6 +24,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Coin" type="Area2D"]
+z_index = 1
 script = ExtResource("1_e764u")
 item_definition = ExtResource("2_weiq1")
 pickup_sound = ExtResource("3_5cp4d")

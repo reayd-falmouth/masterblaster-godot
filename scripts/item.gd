@@ -5,6 +5,7 @@ extends Area2D
 @export var pickup_sound: AudioStream
 		
 func _ready():
+	add_to_group("destructible")
 	connect("area_entered", Callable(self, "_on_area_entered"))
 	connect("body_entered", Callable(self, "_on_body_entered"))
 
