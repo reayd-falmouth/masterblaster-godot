@@ -18,15 +18,15 @@ func _on_window_resized():
 
 func _process(delta: float) -> void:
 
-	var players = get_tree().get_nodes_in_group("Players")  # Ensure your group name matches exactly ('player' lowercase)
+	var players = get_tree().get_nodes_in_group("player")  # Ensure your group name matches exactly ('player' lowercase)
 	var alive_count = 0
 	for player in players:
 		if not player.is_dead:
 			alive_count += 1
 	
-	#if alive_count <= 1:
-		#set_process(false)  # Stop further checks to avoid repeat calls
-		#game_over()
+	if alive_count <= 1:
+		set_process(false)  # Stop further checks to avoid repeat calls
+		game_over()
 
 func game_over():
 	print("🎯 Game over! Too few players left to continue.")

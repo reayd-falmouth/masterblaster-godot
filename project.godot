@@ -22,6 +22,10 @@ ItemDatabase="*res://scripts/item_database.gd"
 Globals="*res://scripts/globals.gd"
 PlayerStats="*res://scripts/player_stats.gd"
 
+[debug]
+
+shapes/collision/draw_2d_outlines=false
+
 [display]
 
 window/size/mode=3

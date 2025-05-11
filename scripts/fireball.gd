@@ -2,7 +2,7 @@ extends Area2D
 class_name Fireball
 
 func _ready():
-	$AnimatedSprite2D.play("explode")
+	$AnimatedSprite2D.play("default")
 	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animatedSprite_animation_finished"))
 	# Connect to collision signals to detect bodies that enter.
 	connect("body_entered", Callable(self, "_on_body_entered"))

@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://g6likbjnebe5"]
+[gd_scene load_steps=2 format=3 uid="uid://g6likbjnebe5"]
 
-[node name="Shop" type="Node2D"]
+[ext_resource type="LabelSettings" uid="uid://bsbc3huf2wi66" path="res://resources/labels/primary.tres" id="1_lx5au"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.0
+offset_top = 48.0
+offset_right = 72.0
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SHOP"
+label_settings = ExtResource("1_lx5au")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://3gon025ybb8k"]
+[gd_scene load_steps=5 format=3 uid="uid://3gon025ybb8k"]
 
 [ext_resource type="LabelSettings" uid="uid://bsbc3huf2wi66" path="res://resources/labels/primary.tres" id="1_6jkho"]
 [ext_resource type="Script" uid="uid://ch7me6mmwdohi" path="res://scripts/standings.gd" id="1_s0knx"]
+[ext_resource type="AudioStream" uid="uid://d1ok5yvgsnxs3" path="res://assets/sounds/bingo.ogg" id="2_y6fsb"]
+[ext_resource type="PackedScene" uid="uid://7d6yhqljsgsh" path="res://scenes/player.tscn" id="4_bw1du"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,6 +15,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_s0knx")
+bingo_sound = ExtResource("2_y6fsb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -20,8 +23,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -72.0
+offset_top = 48.0
 offset_right = 72.0
-offset_bottom = 40.0
+offset_bottom = 88.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -29,5 +33,41 @@ layout_mode = 2
 text = "STANDINGS"
 label_settings = ExtResource("1_6jkho")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PlayerRowsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 203.0
+offset_top = -184.0
+offset_right = 243.0
+offset_bottom = -60.0
+grow_vertical = 2
+scale = Vector2(2.96, 2.96)
+theme_override_constants/separation = 31
+metadata/_edit_use_anchors_ = true
+
+[node name="player1" type="HBoxContainer" parent="PlayerRowsContainer"]
 layout_mode = 2
+
+[node name="Player" parent="PlayerRowsContainer/player1" instance=ExtResource("4_bw1du")]
+
+[node name="player2" type="HBoxContainer" parent="PlayerRowsContainer"]
+layout_mode = 2
+
+[node name="Player" parent="PlayerRowsContainer/player2" instance=ExtResource("4_bw1du")]
+
+[node name="player3" type="HBoxContainer" parent="PlayerRowsContainer"]
+layout_mode = 2
+
+[node name="Player" parent="PlayerRowsContainer/player3" instance=ExtResource("4_bw1du")]
+
+[node name="player4" type="HBoxContainer" parent="PlayerRowsContainer"]
+layout_mode = 2
+
+[node name="Player" parent="PlayerRowsContainer/player4" instance=ExtResource("4_bw1du")]
+
+[node name="player5" type="HBoxContainer" parent="PlayerRowsContainer"]
+layout_mode = 2
+
+[node name="Player" parent="PlayerRowsContainer/player5" instance=ExtResource("4_bw1du")]
